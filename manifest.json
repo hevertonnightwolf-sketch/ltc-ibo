@@ -5,14 +5,20 @@
   "start_url": "hevertonnightwolf-sketch.github.io/ltc-ibo/",
   "scope": "hevertonnightwolf-sketch.github.io/ltc-ibo/",
   "display": "standalone",
-  "display_override": ["standalone", "fullscreen"],
+  "display_override": [
+    "standalone",
+    "fullscreen"
+  ],
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#25D366",
   "description": "Loja online de aplicativos Unet TV",
   "lang": "pt-BR",
   "dir": "ltr",
-  "categories": ["shopping", "entertainment"],
+  "categories": [
+    "shopping",
+    "entertainment"
+  ],
   "icons": [
     {
       "src": "icon-192.png",
