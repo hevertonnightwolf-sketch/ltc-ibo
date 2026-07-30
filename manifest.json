@@ -2,45 +2,49 @@
   "id": "com.unettv.loja",
   "name": "Unet TV Loja",
   "short_name": "Loja",
-  "start_url": "hevertonnightwolf-sketch.github.io/ltc-ibo/",
-  "scope": "hevertonnightwolf-sketch.github.io/ltc-ibo/",
+  "start_url": "https://hevertonnightwolf-sketch.github.io/com.unettv.loja",
+  "scope": "https://hevertonnightwolf-sketch.github.io/com.unettv.loja",
   "display": "standalone",
-  "display_override": [
-    "standalone",
-    "fullscreen"
-  ],
+  "display_override": ["standalone", "fullscreen"],
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#25D366",
   "description": "Loja online de aplicativos Unet TV",
   "lang": "pt-BR",
   "dir": "ltr",
-  "categories": [
-    "shopping",
-    "entertainment"
-  ],
+  "categories": ["shopping", "entertainment"],
   "icons": [
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
     {
       "src": "screenshot1.png",
-      "sizes": "640x480",
-      "type": "image/png"
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
     },
     {
       "src": "screenshot2.png",
-      "sizes": "1280x720",
-      "type": "image/png"
+      "sizes": "640x480",
+      "type": "image/png",
+      "form_factor": "narrow"
     }
   ]
 }
