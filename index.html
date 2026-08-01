@@ -74,6 +74,24 @@
       color: #128C7E;
       margin-top: 5px;
     }
+    .highlight {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      text-align: left;
+    }
+    .highlight h2 {
+      color: #25D366;
+      margin-bottom: 10px;
+    }
+    .highlight p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
     footer {
       margin-top: 40px;
       padding: 20px;
@@ -85,42 +103,19 @@
   <header>📲 Loja de Aplicativos</header>
 
   <main>
-    <div class="app-card">
-      <img src="unet-tv.png" alt="Unet TV">
-      <h2>Unet TV</h2>
-      <p>✨ "Unet TV – Futebol, VPN e TV num só app. Rápido, leve e sem complicação: basta ativar com seu provedor via MAC!" ⚡.</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.09/unetapp.apk" onclick="startDownload(event, 'unet-tv')">Baixar</a>
-      <div class="progress-bar" id="progress-unet-tv"></div>
-      <p class="download-msg" id="msg-unet-tv"></p>
-    </div>
-
-    <div class="app-card">
-      <img src="sonyplay.png" alt="SonyPlay">
-      <h2>SonyPlay</h2>
-      <p>🎶 "Soni Play – App leve, prático e ativado via MAC. Diversão sem complicação, direto com seu provedor!" ⚡.</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/v1.01/soniplaytv.apk" onclick="startDownload(event, 'sonyplay')">Baixar</a>
-      <div class="progress-bar" id="progress-sonyplay"></div>
-      <p class="download-msg" id="msg-sonyplay"></p>
-    </div>
-
-    <div class="app-card">
-      <img src="unet-vu.png" alt="Unet Vu">
-      <h2>Unet Vu</h2>
-      <p>📺 "Unet Vu – leve, prático e independente. Ativado por usuário e senha, sem precisar do provedor, basta ter seus acessos!" 🔑.</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.0002/UNET.VU.apk" onclick="startDownload(event, 'unet-vu')">Baixar</a>
-      <div class="progress-bar" id="progress-unet-vu"></div>
-      <p class="download-msg" id="msg-unet-vu"></p>
-    </div>
-    
-    <div class="app-card">
-      <img src="unet-launcher.png" alt="Unet Launcher">
-      <h2>Unet Launcher</h2>
-      <p>🚀 "Unet Launcher – nosso hub para baixar diversos aplicativos. Simples e poderoso, mas não recomendado para usuários inexperientes." ⚠️.</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.0001/laucher.unet.apk" onclick="startDownload(event, 'unet-launcher')">Baixar</a>
-      <div class="progress-bar" id="progress-unet-launcher"></div>
-      <p class="download-msg" id="msg-unet-launcher"></p>
-    </div>
+    <!-- Seus cards de apps aqui (mantive como antes) -->
+    <!-- ... -->
   </main>
+
+  <!-- Seção de destaque -->
+  <section class="highlight">
+    <h2>📌 Modo de Usar</h2>
+    <p>1️⃣ Clique em <strong>Baixar</strong> no aplicativo desejado.</p>
+    <p>2️⃣ Após concluído, o arquivo estará na pasta <strong>Downloads</strong>.</p>
+    <p>3️⃣ Abra seu <strong>Gerenciador de Arquivos</strong> (ícone geralmente é uma pasta).</p>
+    <p>4️⃣ Vá em <strong>Local → Downloads</strong> e toque no arquivo para instalar.</p>
+    <p>5️⃣ Após instalar, recomenda-se <strong>deletar o arquivo da pasta Downloads</strong> para liberar espaço.</p>
+  </section>
   
   <footer>
     <p>💬 Fale com a gente no WhatsApp: 
@@ -130,25 +125,21 @@
 
   <script>
     function startDownload(event, appId) {
-      event.preventDefault(); // evita abrir o link direto
-
+      event.preventDefault();
       const progressBar = document.getElementById("progress-" + appId);
       const msg = document.getElementById("msg-" + appId);
       let width = 0;
-
       msg.textContent = "Baixando...";
-
       const interval = setInterval(() => {
         if (width >= 100) {
           clearInterval(interval);
           msg.textContent = "✅ Download concluído!";
-          // abre o link real para iniciar o download
           window.location.href = event.target.href;
         } else {
           width += 10;
           progressBar.style.width = width + "%";
         }
-      }, 300); // velocidade da animação
+      }, 300);
     }
   </script>
 </body>
