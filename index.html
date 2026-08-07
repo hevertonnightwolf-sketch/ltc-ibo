@@ -1,197 +1,356 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
-  <title>Minha Loja de Apps</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>UNET TV - Aplicativos</title>
+
   <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #25D366, #128C7E);
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      text-align: center;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0b;
       color: #fff;
+      min-height: 100vh;
     }
-    header {
-      background: rgba(0,0,0,0.4);
-      color: white;
-      padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
+
+    /* MENU SUPERIOR */
+    .top-menu {
+      width: 100%;
+      background: #111;
+      border-bottom: 1px solid #292929;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
-    main {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .app-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      padding: 20px;
-      color: #333;
-      text-align: center;
-    }
-    .app-card img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 10px;
-    }
-    .app-card h2 {
-      margin: 10px 0;
-      color: #25D366;
-    }
-    .app-card p {
-      font-size: 14px;
-      color: #555;
-      margin: 10px 0 20px;
-    }
-    .download-btn {
-      display: inline-block;
-      background: #25D366;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
+
+    .top-menu a {
+      color: #fff;
       text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 8px;
       font-weight: bold;
       transition: 0.3s;
     }
-    .download-btn:hover {
-      background: #128C7E;
+
+    .top-menu a:hover {
+      background: #292929;
+      transform: translateY(-2px);
     }
+
+    .top-menu .active {
+      background: #fff;
+      color: #000;
+    }
+
+    /* TÍTULO */
+    .page-title {
+      text-align: center;
+      padding: 35px 20px 25px;
+    }
+
+    .page-title h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .page-title p {
+      color: #aaa;
+      font-size: 16px;
+    }
+
+    /* GRID */
+    .apps-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    /* CARD */
+    .app-card {
+      background: #151515;
+      border: 1px solid #292929;
+      border-radius: 15px;
+      padding: 22px;
+      text-align: center;
+      transition: 0.3s;
+      overflow: hidden;
+    }
+
+    .app-card:hover {
+      transform: translateY(-5px);
+      border-color: #555;
+    }
+
+    .app-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .app-card h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .app-card p {
+      color: #bbb;
+      line-height: 1.5;
+      min-height: 75px;
+      margin-bottom: 18px;
+    }
+
+    /* BOTÃO */
+    .download-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .download-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* BARRA */
     .progress-bar {
       width: 0%;
-      height: 6px;
-      background: #25D366;
-      border-radius: 3px;
-      margin-top: 10px;
+      height: 4px;
+      background: #fff;
+      margin-top: 15px;
+      border-radius: 10px;
       transition: width 0.3s;
     }
+
     .download-msg {
-      font-size: 12px;
-      color: #128C7E;
-      margin-top: 5px;
+      min-height: 20px;
+      margin-top: 8px;
+      font-size: 13px;
     }
-    .highlight {
-      background: rgba(255,255,255,0.9);
-      color: #333;
-      padding: 20px;
-      margin: 30px auto;
-      max-width: 800px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      text-align: left;
-    }
-    .highlight h2 {
-      color: #25D366;
-      margin-bottom: 10px;
-    }
-    .highlight p {
-      margin: 8px 0;
-      font-size: 14px;
-    }
+
+    /* RODAPÉ */
     footer {
-      margin-top: 40px;
-      padding: 20px;
-      background: rgba(0,0,0,0.4);
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+
+      .top-menu {
+        gap: 5px;
+        padding: 12px 8px;
+      }
+
+      .top-menu a {
+        padding: 9px 12px;
+        font-size: 13px;
+      }
+
+      .page-title h1 {
+        font-size: 26px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header>📲 Loja de Aplicativos</header>
 
-  <main>
-    <div class="app-card">
-      <img src="unet-tv.png" alt="Unet TV">
-      <h2>Unet TV</h2>
-      <p>✨ "Unet TV – Futebol, VPN e TV num só app. Rápido, leve e sem complicação: basta ativar com seu provedor via MAC!" ⚡</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.09/unetapp.apk" onclick="startDownload(event, 'unet-tv')">Baixar</a>
-      <div class="progress-bar" id="progress-unet-tv"></div>
-      <p class="download-msg" id="msg-unet-tv"></p>
-    </div>
+  <!-- MENU SUPERIOR -->
+  <nav class="top-menu">
+    <a href="index.html" class="active">APLICATIVOS</a>
+    <a href="reuse.html">REUSE</a>
+  </nav>
 
+  <!-- TÍTULO -->
+  <section class="page-title">
+    <h1>APLICATIVOS</h1>
+    <p>Baixe nossos aplicativos</p>
+  </section>
+
+  <!-- APLICATIVOS -->
+  <main class="apps-container">
+
+    <!-- SONYPLAY -->
     <div class="app-card">
       <img src="sonyplay.png" alt="SonyPlay">
+
       <h2>SonyPlay</h2>
-      <p>🎶 "Soni Play – App leve, prático e ativado via MAC. Diversão sem complicação, direto com seu provedor!" ⚡</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/v1.01/soniplaytv.apk" onclick="startDownload(event, 'sonyplay')">Baixar</a>
+
+      <p>
+        🎶 "Soni Play – App leve, prático e ativado via MAC.
+        Diversão sem complicação, direto com seu provedor!" ⚡
+      </p>
+
+      <a
+        class="download-btn"
+        href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/v1.01/soniplaytv.apk"
+        onclick="startDownload(event, 'sonyplay')">
+        Baixar
+      </a>
+
       <div class="progress-bar" id="progress-sonyplay"></div>
       <p class="download-msg" id="msg-sonyplay"></p>
     </div>
 
+
+    <!-- UNET VU -->
     <div class="app-card">
       <img src="unet-vu.png" alt="Unet Vu">
+
       <h2>Unet Vu</h2>
-      <p>📺 "Unet Vu – leve, prático e independente. Ativado por usuário e senha, sem precisar do provedor, basta ter seus acessos!" 🔑</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.0002/UNET.VU.apk" onclick="startDownload(event, 'unet-vu')">Baixar</a>
+
+      <p>
+        📺 "Unet Vu – leve, prático e independente.
+        Ativado por usuário e senha, sem precisar do provedor,
+        basta ter seus acessos!" 🔑
+      </p>
+
+      <a
+        class="download-btn"
+        href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.0002/UNET.VU.apk"
+        onclick="startDownload(event, 'unet-vu')">
+        Baixar
+      </a>
+
       <div class="progress-bar" id="progress-unet-vu"></div>
       <p class="download-msg" id="msg-unet-vu"></p>
     </div>
-    
+
+
+    <!-- UNET LAUNCHER -->
     <div class="app-card">
       <img src="unet-launcher.png" alt="Unet Launcher">
+
       <h2>Unet Launcher</h2>
-      <p>🚀 "Unet Launcher – nosso hub para baixar diversos aplicativos. Simples e poderoso, mas não recomendado para usuários inexperientes." ⚠️</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.0001/laucher.unet.apk" onclick="startDownload(event, 'unet-launcher')">Baixar</a>
-      <div class="progress-bar" id="progress-unet-launcher"></div>
-      <p class="download-msg" id="msg-unet-launcher"></p>
-    </div>
-	
-	<div class="app-card">
-      <img src="ninjaplay.png" alt="Ninja Player Ninety">
-      <h2>NINETY NIJA PLAY</h2>
-      <p>🚀 "NINETY NIJA PLAY – 🥷 "Ninja App – duas tecnologias em um só app híbrido. Leve, versátil e pronto para simplificar sua experiência!" ⚡</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.0/ninjahybrid.apk" onclick="startDownload(event, 'unet-launcher')">Baixar</a>
+
+      <p>
+        🚀 "Unet Launcher – nosso hub para baixar diversos aplicativos.
+        Simples e poderoso, mas não recomendado para usuários inexperientes." ⚠️
+      </p>
+
+      <a
+        class="download-btn"
+        href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.0001/laucher.unet.apk"
+        onclick="startDownload(event, 'unet-launcher')">
+        Baixar
+      </a>
+
       <div class="progress-bar" id="progress-unet-launcher"></div>
       <p class="download-msg" id="msg-unet-launcher"></p>
     </div>
 
-	  <div class="app-card">
-      <img src="unitv.png" alt="UNITV">
-      <h2>UNITV</h2>
-      <p>🚀 "UNITV –  "🏆 "UniTV – eleito o melhor do Brasil. Simples, leve e confiável, trazendo a melhor experiência direto para você!" 🇧🇷</p>
-      <a class="download-btn" href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/v1.02/unitv.apk" onclick="startDownload(event, 'unet-launcher')">Baixar</a>
-      <div class="progress-bar" id="progress-unet-launcher"></div>
-      <p class="download-msg" id="msg-unet-launcher"></p>
+
+    <!-- NINJA PLAY -->
+    <div class="app-card">
+      <img src="ninjaplay.png" alt="Ninja Player Ninety">
+
+      <h2>NINETY NIJA PLAY</h2>
+
+      <p>
+        🥷 "Ninja App – duas tecnologias em um só app híbrido.
+        Leve, versátil e pronto para simplificar sua experiência!" ⚡
+      </p>
+
+      <a
+        class="download-btn"
+        href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/1.0/ninjahybrid.apk"
+        onclick="startDownload(event, 'ninja-play')">
+        Baixar
+      </a>
+
+      <div class="progress-bar" id="progress-ninja-play"></div>
+      <p class="download-msg" id="msg-ninja-play"></p>
     </div>
+
+
+    <!-- UNITV -->
+    <div class="app-card">
+      <img src="unitv.png" alt="UNITV">
+
+      <h2>UNITV</h2>
+
+      <p>
+        🏆 "UniTV – eleito o melhor do Brasil.
+        Simples, leve e confiável, trazendo a melhor experiência
+        direto para você!" 🇧🇷
+      </p>
+
+      <a
+        class="download-btn"
+        href="https://github.com/hevertonnightwolf-sketch/aplicativos/releases/download/v1.02/unitv.apk"
+        onclick="startDownload(event, 'unitv')">
+        Baixar
+      </a>
+
+      <div class="progress-bar" id="progress-unitv"></div>
+      <p class="download-msg" id="msg-unitv"></p>
+    </div>
+
   </main>
 
-  <!-- Seção de destaque -->
-  <section class="highlight">
-    <h2>📌 Modo de Usar</h2>
-    <p>1️⃣ Clique em <strong>Baixar</strong> no aplicativo desejado.</p>
-    <p>2️⃣ Após concluído, o arquivo estará na pasta <strong>Downloads</strong>.</p>
-    <p>3️⃣ Abra seu <strong>Gerenciador de Arquivos</strong> (ícone geralmente é uma pasta).</p>
-    <p>4️⃣ Vá em <strong>Local → Downloads</strong> e toque no arquivo para instalar.</p>
-    <p>5️⃣ Após instalar, recomenda-se <strong>deletar o arquivo da pasta Downloads</strong> para liberar espaço.</p>
-  </section>
-  
   <footer>
-    <p>💬 Fale com a gente no WhatsApp: 
-      <a class="download-btn" href="https://wa.me/554999341658?text=Ola%20vim%20do%20site">Abrir WhatsApp</a>
-    </p>
+    © 2026 UNET TV
   </footer>
 
+
   <script>
-    function startDownload(event, appId) {
-      event.preventDefault();
-      const progressBar = document.getElementById("progress-" + appId);
-      const msg = document.getElementById("msg-" + appId);
-      let width = 0;
-      msg.textContent = "Baixando...";
-      const interval = setInterval(() => {
-        if (width >= 100) {
-          clearInterval(interval);
-          msg.textContent = "✅ Download concluído!";
-          window.location.href = event.target.href;
-        } else {
-          width += 10;
-          progressBar.style.width = width + "%";
+    function startDownload(event, app) {
+
+      const progress = document.getElementById("progress-" + app);
+      const msg = document.getElementById("msg-" + app);
+
+      if (!progress || !msg) {
+        return;
+      }
+
+      progress.style.width = "0%";
+      msg.textContent = "Preparando download...";
+
+      let value = 0;
+
+      const timer = setInterval(function () {
+
+        value += 10;
+
+        progress.style.width = value + "%";
+
+        if (value >= 100) {
+
+          clearInterval(timer);
+
+          msg.textContent = "Download iniciado!";
+
         }
-      }, 300);
+
+      }, 100);
     }
   </script>
+
 </body>
 </html>
+```
